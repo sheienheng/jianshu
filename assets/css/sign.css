@@ -1,0 +1,185 @@
+html,body{
+    height: 100%;
+    background-color: #f1f1f1!important;
+}
+.sign{
+     display: block;
+     height: 100%;
+     font-size: 14px;
+     text-align: center;
+     /*background-color: black;*/
+ }
+.logo{
+    position: absolute;
+    top:50px;
+    left: 50px;
+}
+.main{
+    display: inline-block;
+    /*vertical-align: middle;*/
+    width: 400px;
+    background-color: #fff;
+    margin: 60px auto 0;
+    padding: 50px 50px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,.1);
+}
+
+.main .title{
+    margin: 0 auto 50px;
+    padding: 10px;
+    color: #939393;
+}
+.main .title h4{
+    margin: 0;
+    font-size: 18px;
+}
+.main .title h4 a,.main .title .h4 b{
+    padding: 10px;
+}
+.main .title h4 a.active{
+    color: #ea6f5a !important;
+    border-bottom: 2px solid #ea6f5a;
+}
+.main .title h4 a:hover{
+    color: #ea6f5a !important;
+    border-bottom: 2px solid #ea6f5a;
+}
+.main form{
+    margin: 0 0 30px;
+    color: #969696;
+}
+.main form .input-prepend{
+    position: relative;
+    width: 100%;
+}
+.main form .input-prepend input{
+    width: 100%;
+    height: 50px;
+    padding: 4px 12px 4px 35px;
+    border: 1px solid #c8c8c8;
+    border-bottom: none;
+}
+.main form input.top-radius{
+    border-radius: 10px 10px 0 0;
+}
+.main form input.bottom-radius{
+    border-radius:0 0 10px 10px ;
+    border-bottom: 1px solid #c8c8c8;
+}
+/*.main .top-radius{*/
+
+/*}*/
+.main form .input-prepend i{
+    position: absolute;
+    color: #969696;
+    top:15px;
+    left: 15px;
+    font-size: 20px;
+}
+.main form .remember{
+    float: left;
+    margin: 25px 0;
+}
+.main form .help{
+    float: right;
+    margin: 25px 0;
+}
+.main form>input{
+    width: 100%;
+    display: block;
+    height: 45px;
+    border-radius: 20px;
+}
+.main .more-sign p{
+    position: relative;
+    font-size: 14px;
+    color: #b8b8b8;
+    margin-bottom: 20px;
+}
+.main .more-sign p:before{
+    content: '';
+    position: absolute;
+    width: 60px;
+    top:10px;
+    left: 30px;
+    border-bottom: 1px solid #b8b8b8;
+
+}
+.main .more-sign p:after{
+    content: '';
+    position: absolute;
+    width: 60px;
+    top:10px;
+    right: 30px;
+    border-bottom: 1px solid #b8b8b8;
+}
+.main .more-sign ul{
+    margin-bottom: 20px;
+}
+.main .more-sign ul li{
+    display: inline-block;
+    border-radius: 50%;
+    color: #fff;
+    margin: 0 5px;
+}
+.main .more-sign ul li.weibo{
+    background-color: #e05244;
+}
+.main .more-sign ul li.weixin{
+    background-color: #00bb29;
+}
+.main .more-sign ul li.qq{
+    background-color: #498ab5;
+}
+.main .more-sign ul .other{
+    color: #939393;
+}
+.main .more-sign ul li a{
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+.main .more-sign ul li a i{
+    font-size: 25px;
+}
+.reg-btn{
+    margin-top: 30px;
+}
+.sign-up-msg{
+    margin: 15px 0;
+    /*padding: 0 20px;*/
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+.main form .ssm{
+    position: relative;
+    line-height: 36px;
+}
+.main form .input-prepend a.send-ssm{
+    position: absolute;
+    display: block;
+    right: 10px;
+    top:8px;
+    font-size: 12px;
+    border-radius: 15px;
+    opacity: .8;
+    color: #fff!important;
+}
+@media (max-width: 768px) {
+    .sign .logo{
+        display: none;
+    }
+    .sign{
+        background-color: white;
+    }
+    .sign .main{
+        box-shadow: none;
+        height: 100%;
+    }
+    html,body{
+        background-color: #fff!important;
+    }
+}
