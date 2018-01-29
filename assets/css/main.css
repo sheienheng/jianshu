@@ -1,16 +1,75 @@
+*{
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    background-color: #fff;
+    color:#333;
+}
+#__nuxt{
+    height: 100%;
+}
+#sign-imp{
+    height: 100%;
+    background-color: #f1f1f1;
+}
+#default-imp{
+    height: 100%;
+    padding-top: 56px;
+    background-color: #fff;
+}
 a,a:hover,a:focus{
     text-decoration: none!important;
     color: inherit!important;
+}
+.my-container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 input:focus{
     outline: none;
 }
 h1,h2,h3,h4,h5,h6{
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 ul,ol,dl{
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0!important;
+    padding: 0 !important;
 }
+@media (min-width: 992px){
+    .my-container {
+        width: 960px!important;
+    }
+}
+
+@media (max-width: 1080px){
+    .my-container {
+        width: 750px!important;
+    }
+}
+/*******************************************************/
+/*首页布局*/
+.index .main{
+    height: 500px;
+    padding-right: 0;
+}
+.index .aside{
+    height: 500px;
+    padding: 0 0 0 4.16667%;
+}
+.index .main .banner img{
+    width: 100%;
+    border-radius: 10px;
+}
+.index .aside .board img{
+    width: 100%;
+    margin-bottom: 5px;
+}
+/********************************************************/
+/*文章页面布局*/
+/********************************************************/
+/*用户页面*/

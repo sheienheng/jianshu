@@ -1,185 +1,179 @@
-html,body{
-    height: 100%;
-    background-color: #f1f1f1!important;
-}
 .sign{
-     display: block;
-     height: 100%;
-     font-size: 14px;
-     text-align: center;
-     /*background-color: black;*/
- }
-.logo{
+    height: 100%;
+    /*min-height: 750px;*/
+    font-size: 14px;
+    text-align: center;
+}
+.sign .logo{
     position: absolute;
-    top:50px;
+    top: 50px;
     left: 50px;
 }
-.main{
-    display: inline-block;
-    /*vertical-align: middle;*/
+.sign .logo img{
+    width: 100px;
+}
+.sign .main{
     width: 400px;
     background-color: #fff;
-    margin: 60px auto 0;
+    margin: 50px auto 0;
     padding: 50px 50px 30px;
-    border-radius: 5px;
+    border-radius: 4px;
     box-shadow: 0 0 8px rgba(0,0,0,.1);
+    display: inline-block;
 }
-
-.main .title{
+.sign .main .title{
     margin: 0 auto 50px;
     padding: 10px;
     color: #939393;
 }
-.main .title h4{
-    margin: 0;
+.sign .main .title h4{
     font-size: 18px;
+    margin: 0;
+    padding: 0;
 }
-.main .title h4 a,.main .title .h4 b{
+.sign .main .title h4 a,b{
     padding: 10px;
 }
-.main .title h4 a.active{
-    color: #ea6f5a !important;
+.sign .main .title h4 a.active{
+    color: #ea6f5a!important;
+    border-bottom: 2px solid #ea6f5a;
+    font-weight: 700;
+}
+.sign .main .title h4 a:hover{
     border-bottom: 2px solid #ea6f5a;
 }
-.main .title h4 a:hover{
-    color: #ea6f5a !important;
-    border-bottom: 2px solid #ea6f5a;
-}
-.main form{
+.sign .main form{
     margin: 0 0 30px;
     color: #969696;
 }
-.main form .input-prepend{
+.sign .main form .input-prepend{
     position: relative;
     width: 100%;
 }
-.main form .input-prepend input{
+.sign .main form .input-prepend input{
     width: 100%;
     height: 50px;
-    padding: 4px 12px 4px 35px;
-    border: 1px solid #c8c8c8;
+    padding:4px 12px 4px 35px;
+    border:1px solid #c8c8c8;
+    background-color: rgb(248,248,248);
     border-bottom: none;
 }
-.main form input.top-radius{
-    border-radius: 10px 10px 0 0;
+.sign .main .top-radius{
+    border-radius: 4px 4px 0 0;
 }
-.main form input.bottom-radius{
-    border-radius:0 0 10px 10px ;
-    border-bottom: 1px solid #c8c8c8;
+.sign .main .bottom-radius{
+    border-radius: 0 0 4px 4px;
+    border-bottom: 1px solid #c8c8c8!important;
 }
-/*.main .top-radius{*/
-
-/*}*/
-.main form .input-prepend i{
+.sign .main form .input-prepend i{
     position: absolute;
     color: #969696;
-    top:15px;
+    top: 15px;
     left: 15px;
     font-size: 20px;
 }
 .main form .remember{
     float: left;
     margin: 25px 0;
-}
-.main form .help{
-    float: right;
-    margin: 25px 0;
-}
-.main form>input{
-    width: 100%;
-    display: block;
-    height: 45px;
-    border-radius: 20px;
-}
-.main .more-sign p{
-    position: relative;
-    font-size: 14px;
-    color: #b8b8b8;
-    margin-bottom: 20px;
-}
-.main .more-sign p:before{
-    content: '';
-    position: absolute;
-    width: 60px;
-    top:10px;
-    left: 30px;
-    border-bottom: 1px solid #b8b8b8;
 
 }
-.main .more-sign p:after{
-    content: '';
-    position: absolute;
-    width: 60px;
-    top:10px;
-    right: 30px;
-    border-bottom: 1px solid #b8b8b8;
+.sign .main form .help{
+    float: right;
+    margin: 25px 0;
+
 }
-.main .more-sign ul{
+.sign .main form>input{
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    height: 43px;
+}
+.sign .main .more-sign p{
+    font-size: 14px;
+    color: #b8b8b8;
+    position: relative;
     margin-bottom: 20px;
 }
-.main .more-sign ul li{
+.sign .main .more-sign p:before{
+    content: "";
+    width: 60px;
+    border-bottom: 1px solid #b8b8b8;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
+.sign .main .more-sign p:after{
+    content: "";
+    width: 60px;
+    border-bottom: 1px solid #b8b8b8;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+}
+.sign .main .more-sign ul{
+    margin-bottom: 20px;
+}
+.sign .main .more-sign ul li {
     display: inline-block;
     border-radius: 50%;
     color: #fff;
     margin: 0 5px;
 }
-.main .more-sign ul li.weibo{
-    background-color: #e05244;
-}
-.main .more-sign ul li.weixin{
-    background-color: #00bb29;
-}
-.main .more-sign ul li.qq{
-    background-color: #498ab5;
-}
-.main .more-sign ul .other{
-    color: #939393;
-}
-.main .more-sign ul li a{
+.sign .main .more-sign ul li a{
     display: block;
     width: 50px;
     height: 50px;
+    border-radius: 50%;
     line-height: 50px;
 }
-.main .more-sign ul li a i{
-    font-size: 25px;
+.sign .main .more-sign ul li a i{
+    font-size: 20px;
 }
-.reg-btn{
-    margin-top: 30px;
+.sign .main .more-sign ul .another{
+    color: #939393;
+    background: rgb(248,248,248);
 }
-.sign-up-msg{
+.sign .main .more-sign ul .sign-weibo{
+    background: #e05244;
+}
+.sign .main .more-sign ul .sign-wechat{
+    background: #00bb29;
+}
+.sign .main .more-sign ul .sign-qq{
+    background: #498ad5;
+}
+.sign .main form input.sign-up-btn{
+    margin-top: 20px;
+}
+.sign .main form p.sign-up-msg{
     margin: 15px 0;
-    /*padding: 0 20px;*/
+    text-align: center;
     font-size: 12px;
     line-height: 20px;
-    text-align: center;
+    color: #969696;
 }
-.main form .ssm{
+.sign .main form .ssm{
     position: relative;
-    line-height: 36px;
 }
-.main form .input-prepend a.send-ssm{
+.sign .main form .input-prepend a.send-ssm{
     position: absolute;
+    top: 12px;
+    right: 0;
     display: block;
-    right: 10px;
-    top:8px;
     font-size: 12px;
-    border-radius: 15px;
-    opacity: .8;
+    border-radius: 20px;
+    opacity: .7;
     color: #fff!important;
 }
-@media (max-width: 768px) {
+@media (max-width:768px) {
     .sign .logo{
         display: none;
     }
-    .sign{
-        background-color: white;
+    .sign #sign-imp{
+        background: #fff!important;
     }
     .sign .main{
         box-shadow: none;
-        height: 100%;
-    }
-    html,body{
-        background-color: #fff!important;
+        margin: 0 auto;
     }
 }

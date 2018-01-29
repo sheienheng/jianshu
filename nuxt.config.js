@@ -2,6 +2,9 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  plugins: [
+    { src: '~/plugins/swiper.js', ssr: false },
+  ],
   head: {
     title: '简书项目',
     meta: [
@@ -9,6 +12,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '简书的测试项目' }
     ],
+
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -16,8 +20,8 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~/assets/css/main.css','~/assets/css/normalize.css',
-      '~/assets/css/font-awesome.css'],
+  css: ['~/assets/css/main.css','~assets/css/normalize.css','~/assets/css/font-awesome.css',
+  'swiper/dist/css/swiper.css'],
   /*
   ** Add axios globally
   */

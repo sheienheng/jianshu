@@ -2,7 +2,7 @@
   "name": "jianshu",
   "version": "1.0.0",
   "description": "Nuxt.js project",
-  "author": "sheienheng <1377191465@qq.com>",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "backpack dev",
@@ -17,9 +17,9 @@
     "bootstrap-vue": "^1.4.1",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
-    "jquery": "^3.3.1",
     "nuxt": "^1.0.0-rc3",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "vue-awesome-swiper": "^3.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
