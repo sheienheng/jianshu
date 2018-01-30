@@ -54,20 +54,255 @@ ul,ol,dl{
 /*******************************************************/
 /*首页布局*/
 .index .main{
-    height: 500px;
     padding-right: 0;
 }
 .index .aside{
-    height: 500px;
     padding: 0 0 0 4.16667%;
+}
+.index .aside .board img{
+     width: 100%;
+     margin-bottom: 5px;
 }
 .index .main .banner img{
     width: 100%;
     border-radius: 10px;
 }
-.index .aside .board img{
+
+.index .main .banner{
+    margin-bottom: 35px;
+}
+.index .main .recommend-collection{
+    margin-bottom: 10px;
+}
+.index .main .recommend-collection a{
+    display: inline-block;
+    margin: 0 18px 18px 0;
+    min-height: 32px;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+.index .main .recommend-collection a img{
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
+}
+.index .main .recommend-collection a span{
+    display: inline-block;
+    font-size: 14px;
+    padding: 0 5px 0 5px;
+    line-height: 32px;
+}
+.index .main .recommend-collection a.more-hot-collection{
+    display: inline-block;
+    font-size: 14px;
+    line-height: 32px;
+    background: none;
+    color: #787878;
+    border: none;
+}
+.index .main .split-line{
+    margin: 0 0 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.note-list {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.note-list li{
+    position: relative;
     width: 100%;
-    margin-bottom: 5px;
+    padding: 0 0 17px 0;
+    margin: 0 0 17px 0;
+    border-bottom: 1px solid #ccc;
+    word-wrap: break-word;
+}
+.note-list li.have-img>.warp-img{
+    position: absolute;
+    top:50%;
+    right: 0;
+    margin-top: -60px;
+    width: 150px;
+    height: 120px;
+}
+.note-list li.have-img>.warp-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.note-list li.have-img .content{
+    padding-right: 160px;
+}
+.note-list .author{
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+.note-list .author .avatar ,.note-list .author .info{
+    display: inline-block;
+    vertical-align: middle;
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.note-list .content .author .avatar{
+    margin: 0 5px 0 0;
+}
+.note-list .author .info .time{
+    color: #969696;
+    padding-left: 5px;
+}
+.note-list .title{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.note-list .title:visited{
+    color: #969696;
+}
+.note-list .abstract{
+    font-size: 13px;
+    line-height: 24px;
+    margin: 0 0 13px 0;
+}
+.note-list .meta{
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.note-list .meta .collection-tag{
+    color: #ea6f5a!important;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #ea6f5a;
+    padding: 0 5px;
+    margin-right: 10px;
+    border-radius: 4px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all ease-in .5s;
+}
+.note-list .meta .collection-tag:hover{
+    background-color: rgb(254,247,246);
+    border: 1px solid rgb(236,97,73);
+}
+.note-list .meta a ,span{
+    margin-right: 10px;
+    color: #b4b4b4!important;
+}
+.note-list .meta a.colorChange:hover{
+    color: rgb(120,120,120)!important;
+}
+.index .main .load-more{
+    display: block;
+    width: 100%;
+    height: 40px;
+    /*line-height: 30px;*/
+    text-align: center;
+    color: #fff!important;
+    background: #a5a5a5;
+    border-radius: 20px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    font-size: 15px;
+}
+@media (max-width: 1080px) {
+    .note-list li.have-img>.warp-img{
+        margin-top: -60px;
+        bottom: 40px;
+        width: 125px;
+        height: 100px;
+    }
+    .note-list li.have-img>div{
+        padding-right: 135px;
+    }
+}
+footer .foot{
+    color: #939393;
+    font-size: 14px ;
+}
+footer .foot span{
+    margin: 0;
+}
+.recommend-author{
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+}
+.recommend-author .title{
+    text-align: left;
+}
+.recommend-author .title .page-change{
+    float: right;
+    color: #969696!important;
+}
+.recommend-author .title .page-change i{
+    transition: ease .3s;
+}
+.recommend-author .list{
+    margin-bottom: 20px;
+    text-align: left;
+}
+.recommend-author .list li{
+    margin-top: 15px;
+}
+.recommend-author .list li .avatar{
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+.recommend-author .list li .follow{
+    float: right;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #42c02e!important;
+}
+.recommend-author .list li .name{
+    display: block;
+    padding-top: 5px;
+    margin-right: 60px;
+    font-size: 14px;
+}
+.recommend-author .list li p{
+    color: #969696;
+    font-size: 12px;
+}
+.recommend-author .find-more{
+    display: block;
+    width: 100%;
+    padding: 7px 7px 7px 12px;
+    color: #787878!important;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    font-size: 13px;
+    border-radius: 4px;
+}
+.recommend-author .find-more i{
+    font-size: 14px;
+    margin-left: 5px;
+}
+.aside .download{
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    padding: 7px 10px;
+    margin-bottom: 30px;
 }
 /********************************************************/
 /*文章页面布局*/
