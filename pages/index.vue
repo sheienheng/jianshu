@@ -59,7 +59,7 @@
                     <div id="list-container">
                         <ul class="note-list">
                             <li class="have-img">
-                                <nuxt-link class="warp-img" to="/p/123">
+                                <nuxt-link class="warp-img" to="/p/_id">
                                     <img src="../assets/img/note1.jpg" alt="">
                                 </nuxt-link>
                                 <div class="content">
@@ -250,7 +250,11 @@
                         </nuxt-link>
                     </div>
                     <div class="download">
-                        这是二维码
+                        <button type="button" class="btn btn-primary" title="Popover title"
+                                data-container="body" data-toggle="popover" data-placement="top"
+                                data-content="顶部的 Popover 中的一些内容">
+                            顶部的 Popover
+                        </button>
                     </div>
                     <!--推荐作者-->
                     <div class="recommend-author">
@@ -430,7 +434,8 @@
         rotate:function(){
           this.deg = this.deg + 360;
           this.$refs.refresh.style.transform = `rotate(${this.deg}deg)`;
-        }
+        },
+
       }
 
     }
