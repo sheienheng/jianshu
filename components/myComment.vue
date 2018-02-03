@@ -7,7 +7,7 @@
                     <img src="../assets/img/default-avatar.jpg" alt="">
                 </nuxt-link>
                 <textarea placeholder="写下你的评论" @focus="send=true"
-                v-model="value"></textarea>
+                v-model="valueone"></textarea>
                 <transition :duration="300" name="fade">
                     <div v-if="send" class="write-function-block clearfix">
                         <div class="emoji-modal-wrap">
@@ -15,7 +15,7 @@
                                 <i class="fa fa-smile-o"></i>
                             </a>
                             <transition :duration="1000" name="fade">
-                                <div class="emoji-modal arrow-up" v-if="showEmoji">
+                                <div class="emoji-modal arrow-up" v-if="showEmoji" @click="selcount(-1)">
                                     <vue-emoji @select="selectEmoji"></vue-emoji>
                                 </div>
                             </transition>
@@ -140,21 +140,21 @@
                         <div class="comment-wrap">
                             <p v-html="comment.complied_content"></p>
                             <div class="tool-group">
-                                <a href="javascript:void(0)">
+                                <a href="javascript:void(0)" :class="colorchange[index]" @click="zan(index)">
                                     <i class="fa fa-thumbs-o-up"></i>
                                     <span>{{comment.likes_count}}人点赞</span>
                                 </a>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span>回复</span>
+                                    <span @click="huifu(index,'')">回复</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!--二级回复-->
-                    <div class="sub-comment-list" v-if="comment.children.length != 0">
-                        <div v-for="(subComment,index) in comment.children" :id="'comment-'+subComment.id"
-                             class="sub-comment">
+                    <div class="sub-comment-list">
+                        <div v-for="(subComment,index2) in comment.children" :id="'comment-'+subComment.id"
+                             class="sub-comment" v-if="comment.children.length != 0">
                             <p>
                                 <nuxt-link to="/u/123">
                                     {{subComment.user.nickname}}
@@ -168,15 +168,39 @@
                                 <span>{{subComment.created_at | formatDate}}</span>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span>回复</span>
+                                    <span @click="huifu(index,subComment.user.nickname)">回复</span>
                                 </a>
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void(0)" class="add-commnet-btn">
+                            <a href="javascript:void(0)" class="add-commnet-btn" v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
                             </a>
+                            <transition :duration="500" name="fade">
+                                <div class="clearfix" v-if="showPings[index].showPing">
+                                <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
+                                    <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
+                                        <i class="fa fa-smile-o"></i>
+                                    </a>
+                                <div class="emoji-modal-wrap">
+                                    <transition :duration="1000" name="fade">
+                                        <div v-if="smiles[index].smile" class="emoji-modal arrow-up" @click="selcount(index)">
+                                            <vue-emoji @select="selectEmoji"></vue-emoji>
+                                        </div>
+                                    </transition>
+                                    <div class="hint">
+                                        Ctrl + Enter发表
+                                    </div>
+                                    <a href="javascript:void(0)" class="btn btn-send">
+                                        发送
+                                    </a>
+                                    <a href="javascript:void(0)" class="cancel" @click="huifu2(index)">
+                                        取消
+                                    </a>
+                                </div>
+                            </div>
+                            </transition>
                         </div>
                     </div>
                 </div>
@@ -193,11 +217,14 @@
       return{
         send:false,
         showEmoji:false,
+        valueone:'',
         value:'',
+        valuem:[],
+        showPings:[],
+        smiles:[],
         comments:[
           {
             id:20101998,
-            showPopid:false,
             floor:2,
             liked:true,
             likes_count:12,
@@ -229,7 +256,6 @@
           },
           {
             id:20147520,
-            showPopid:false,
             floor:3,
             liked:true,
             likes_count:15,
@@ -262,7 +288,6 @@
           {
             id:20100836,
             floor:4,
-            showPopid:false,
             liked:true,
             likes_count:10,
             note_id:23354357,
@@ -315,7 +340,6 @@
           },
           {
             id:201019966,
-            showPopid:false,
             floor:2,
             liked:true,
             likes_count:0,
@@ -335,27 +359,88 @@
 
             ]
           },
-
         ],
         showPop2:false,
+        changemes:'1',
+        colorchange:[],
+        zanchange:false
       }
+    },
+    created(){
+      this.pushMore;
     },
     components:{
       vueEmoji
     },
     methods:{
-        selectEmoji:function(code){
-            this.showEmoji = false;
-            this.value += code;
-        },
-        sendData:function(){
+      selectEmoji:function(code){
+        this.showEmoji = false;
+        this.value += code;
+      },
+      selcount:function(index){
+        if(index < 0){
+          this.valueone = this.value;
+          this.value = '';
+        }else{
+          this.valuem[index].value += this.value;
+          this.value = '';
+          this.smiles[index].smile = false;
+        }
 
-        },
+      },
+      smilebtn:function (index) {
+        this.smiles[index].smile = !this.smiles[index].smile;
+      },
+      huifu:function(index,mes){
+        if(this.changemes == mes){
+          this.showPings[index].showPing =!this.showPings[index].showPing;
+        }else{
+          this.showPings[index].showPing = true;
+        }
+        if(mes){
+          this.valuem[index].value = '@'+mes+':';
+        }else{
+          this.valuem[index].value = '';
+        }
+        console.log(mes);
+        this.changemes = mes;
+      },
+      huifu2:function(index){
+        this.showPings[index].showPing = false;
+      },
+      zan:function(index){
+        if(!this.zanchange){
+          this.colorchange[index].colorchange=true;
+          ++this.comments[index].likes_count;
+        }else{
+          this.colorchange[index].colorchange=false;
+          --this.comments[index].likes_count;
+        }
+        this.zanchange=!this.zanchange;
+      },
+      sendData:function(){
+
+      }
+    },
+    computed:{
+      pushMore:function(){
+        console.log(1);
+        for(let i in this.comments){
+          this.valuem.push({value:''});
+          this.smiles.push({smile:false});
+          this.showPings.push({showPing:false});
+          this.colorchange.push({'colorchange':false});
+        }
+        console.log(this.showPings);
+      },
     }
   }
 </script>
 
 <style>
+    .note .post .comment-list .comment .tool-group a.colorchange{
+        color: red !important;
+    }
     .fade-enter-active,.fade-leave-active {
         opacity: 1;
         transition: .3s;
@@ -386,7 +471,7 @@
         position: absolute;
         left: -48px;
     }
-    .note .post .comment-list .new-comment textarea{
+    .note .post .comment-list textarea{
         width: 100%;
         height: 80px;
         padding: 10px 15px;
@@ -400,33 +485,33 @@
         /*position: relative;*/
         /*z-index: 999;*/
     }
-    .note .post .comment-list .new-comment .emoji{
+    .note .post .comment-list .emoji{
         float: left;
         margin-top: 18px;
     }
-    .note .post .comment-list .new-comment .emoji i{
+    .note .post .comment-list .emoji i{
         font-size: 25px;
         color: #969696;
     }
-    .note .post .comment-list .new-comment .emoji i:hover{
+    .note .post .comment-list .emoji i:hover{
         color: #333;
     }
-    .note .post .comment-list .new-comment .hint{
+    .note .post .comment-list .hint{
         float: left;
         margin: 18px 0 0 10px;
         font-size: 13px;
         color: #969696;
     }
-    .note .post .comment-list .new-comment .cancel{
+    .note .post .comment-list .cancel{
         float: right;
         font-size: 16px;
         margin: 18px 30px 0 0;
         color: #969696!important;
     }
-    .note .post .comment-list .new-comment .cancel:hover{
+    .note .post .comment-list .cancel:hover{
         color: #333!important;
     }
-    .note .post .comment-list .new-comment .btn-send{
+    .note .post .comment-list .btn-send{
         float: right;
         width: 78px;
         padding: 8px 18px;
@@ -438,13 +523,13 @@
         text-align: center;
         box-shadow: none;
     }
-    .note .post .comment-list .new-comment .btn-send:hover{
+    .note .post .comment-list .btn-send:hover{
         background-color: #3db922;
     }
-    .note .post .comment-list .new-comment .emoji-modal-wrap{
+    .note .post .comment-list .emoji-modal-wrap{
         position: relative;
     }
-    .note .post .comment-list .new-comment .emoji-modal-wrap .emoji-modal{
+    .note .post .comment-list .emoji-modal-wrap .emoji-modal{
         position: absolute;
         top:50px;
         left: -48px;
