@@ -12,8 +12,8 @@
                     写文章
                 </nuxt-link>
                 <!--登录注册按钮-->
-                <nuxt-link to="sign-out" class="btn sign-out">注册</nuxt-link>
-                <nuxt-link to="sign-in" class="btn sign-in">登录</nuxt-link>
+                <nuxt-link to="/sign-out" class="btn sign-out">注册</nuxt-link>
+                <nuxt-link to="/sign-in" class="btn sign-in">登录</nuxt-link>
                 <!--如果用户登录显示头像-->
                 <div class="user" style="display: none" @mouseover='userShow = true' @mouseleave='userShow = false'>
                     <div class="drop-down">

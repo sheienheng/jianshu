@@ -38,7 +38,7 @@
                 <!--留言的排序-->
                 <div class="top-title">
                     <span>25条评论</span>
-                    <a href="javascript:void(0)" class="author-only">
+                    <a href="javascript:void(0)" class=" -only">
                         只看作者
                     </a>
                     <div class="pull-right">
@@ -75,27 +75,110 @@
                 :id="'comment-'+comment.id">
                     <div class="comment-content">
                         <div class="author">
-                            <!--<div class="v-tooltip-content">-->
-                                <nuxt-link to="/u/123" class="avatar">
+                            <div class="avatar" :id="'img-'+ index">
+                                <nuxt-link to="/u/123" >
                                     <img :src="comment.user.avatar" alt="">
                                 </nuxt-link>
-                            <!--</div>-->
+                                <!--<b-popover :show.sync="comment.showPopid" :target="'img-'+index" placement="top" triggers="hover" delay="500">-->
+                                    <!--<div class="intro">-->
+                                        <!--<div class="introImg">-->
+                                            <!--<nuxt-link to="/u/123" class="avatar" :id="'img-'+ index">-->
+                                                <!--<img :src="comment.user.avatar" alt="">-->
+                                            <!--</nuxt-link>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="info">-->
+                                            <!--<nuxt-link to="/u/123" class="name">-->
+                                                <!--{{comment.user.nick_name}}-->
+                                            <!--</nuxt-link>-->
+                                            <!--<p>爱生活，爱自然爱生活，爱自然,爱生活，爱自然,爱生活，爱自然,爱生活，爱自然,爱生活，爱自然</p>-->
+                                            <!--<p class="introLike">爱222222222</p>-->
+                                            <!--<p class="introLike">爱3333333</p>-->
+                                            <!--<p class="introLike">爱444444444444</p>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<hr style="margin: 5px 0 5px 0;">-->
+                                    <!--<div class="introMes">-->
+                                        <!--<ul>-->
+                                            <!--<li>-->
+                                                <!--<span>2222</span>-->
+                                                <!--<p>文章</p>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<span>2222</span>-->
+                                                <!--<p>文章</p>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<span>2222</span>-->
+                                                <!--<p>文章</p>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                        <!--&lt;!&ndash;<a class="btn" href="javascript:void(0)" :class="followObj" @click="isFollow" @mouseover="noFollow" @mouseleave="beFollow">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<i class="fa" :class="iconObj" ref="icon3"></i>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<span ref="followWord3">关注</span>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<a class="btn" href="javascript:void(0)" :class="followObj" @click="isFollow" @mouseover="noFollow" @mouseleave="beFollow">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<i class="fa" :class="iconObj" ref="icon3"></i>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<span ref="followWord3">关注</span>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</b-popover>-->
+                            </div>
                             <div class="info">
                                 <nuxt-link to="/u/123" class="name">
                                     {{comment.user.nick_name}}
                                 </nuxt-link>
                                 <div class="meta">
                                     <span>
-                                        {{comment.floor}}楼.{{comment.create_at}}
+                                        {{comment.floor}}楼.{{comment.create_at|formatDate}}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <!--正文部分-->
-                        <div class="comment-wrap"></div>
+                        <div class="comment-wrap">
+                            <p v-html="comment.complied_content"></p>
+                            <div class="tool-group">
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-thumbs-o-up"></i>
+                                    <span>{{comment.likes_count}}人点赞</span>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>回复</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <!--二级回复-->
-                    <div class="sub-comment-list"></div>
+                    <div class="sub-comment-list" v-if="comment.children.length != 0">
+                        <div v-for="(subComment,index) in comment.children" :id="'comment-'+subComment.id"
+                             class="sub-comment">
+                            <p>
+                                <nuxt-link to="/u/123">
+                                    {{subComment.user.nickname}}
+                                </nuxt-link>
+                                :
+                                <span v-html="subComment.complied_content">
+                                    <!--{{subComment.complied_content}}-->
+                                </span>
+                            </p>
+                            <div class="sub-tool-group">
+                                <span>{{subComment.created_at | formatDate}}</span>
+                                <a href="javascript:void(0)">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>回复</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="more-comment">
+                            <a href="javascript:void(0)" class="add-commnet-btn">
+                                <i class="fa fa-pencil"></i>
+                                <span>添加新评论</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,6 +197,7 @@
         comments:[
           {
             id:20101998,
+            showPopid:false,
             floor:2,
             liked:true,
             likes_count:12,
@@ -145,6 +229,7 @@
           },
           {
             id:20147520,
+            showPopid:false,
             floor:3,
             liked:true,
             likes_count:15,
@@ -164,7 +249,7 @@
               {
                 id: 20147583,
                 user_id:8179167,
-                complied_content:'<a href="/users/cadca6980261" class="maleskine-author" target="_blank" data-user-slug="cadca6980261">@画皮流殇</a> 👍👍👍🌹🌹🌹',
+                complied_content:'@画皮流殇 👍👍👍🌹🌹🌹',
                 user:{
                   id: 8179167,
                   nickname: "渴死之水"
@@ -177,6 +262,7 @@
           {
             id:20100836,
             floor:4,
+            showPopid:false,
             liked:true,
             likes_count:10,
             note_id:23354357,
@@ -227,7 +313,31 @@
               },
             ]
           },
-        ]
+          {
+            id:201019966,
+            showPopid:false,
+            floor:2,
+            liked:true,
+            likes_count:0,
+            note_id:23354357,
+            user_id:8475271,
+            user:{
+              avatar:'/default-avatar.jpg',
+              id:8475271,
+              is_author:false,
+              nick_name:'biubiu',
+              badge:null
+            },
+            create_at:'2018-01-29T22:30:58.000+08:00',
+            children_count:0,
+            complied_content:'棒棒哒……喜欢！👍💝🌹🌹',
+            children:[
+
+            ]
+          },
+
+        ],
+        showPop2:false,
       }
     },
     components:{
@@ -240,7 +350,7 @@
         },
         sendData:function(){
 
-        }
+        },
     }
   }
 </script>
@@ -394,7 +504,9 @@
     .note .post .comment-list .comment{
         padding: 20px 0 30px 0;
         border: 1px solid #f0f0f0;
-
+    }
+    .note .post .comment-list .comment .comment-content .author{
+        margin-bottom: 20px;
     }
     .note .post .comment-list .info{
         display: inline-block;
@@ -405,6 +517,113 @@
     }
     .note .post .comment-list .info .meta{
         font-size: 12px;
+        color: #969696;
+    }
+    .note .post .comment-list .comment p{
+        font-size: 16px;
+        margin: 10px 0;
+        line-height: 1.5;
+        word-break: break-word !important;
+    }
+    .note .post .comment-list .comment .tool-group a{
+        color: #969696!important;
+        margin-right: 10px;
+    }
+    .note .post .comment-list .comment .tool-group a i{
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    .note .post .comment-list .comment .tool-group span{
+        font-size: 14px;
+    }
+    .note .post .comment-list .sub-comment-list{
+        border-left: 2px solid #d9d9d9;
+        margin-top: 10px;
+        padding: 5px 0 5px 20px;
+    }
+    .note .post .comment-list .sub-comment-list .sub-comment{
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px sol #f0f0f0;
+    }
+    .note .post .comment-list .sub-comment-list .sub-comment p{
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 5px;
+    }
+    .note .post .sub-comment-list .sub-comment p a{
+        color: #3194d0!important;
+    }
+    .note .post .comment-list .sub-tool-group{
+        font-size: 12px;
+        color: #969696;
+    }
+    .note .post .comment-list .sub-tool-group a{
+        margin-left: 10px;
+    }
+    .note .post .comment-list .sub-tool-group a i{
+        margin-right: 5px;
+    }
+    .note .post .comment-list .more-comment{
+        font-size: 14px;
+        color: #969696;
+    }
+    .note .post .comment-list .more-comment i{
+        margin-right: 5px;
+    }
+    .note .post .comment-list .more-comment a:hover{
+        color: #333!important;
+    }
+    .popover{
+        max-width: 500px;
+        /*top: -3px!important;*/
+        left: 6px!important;
+    }
+    .popover .popover-body .intro{
+        width: 500px;
+        display: flex;
+    }
+    .popover .popover-body .intro .introImg{
+        width: 20%;
+        padding: 15px;
+    }
+    .popover .popover-body .intro .avatar{
+        /*display: inline-block;*/
+        width: 70px;
+        height: 70px;
+    }
+    .popover .popover-body .intro>.info{
+        /*display: inline-block;*/
+        padding: 10px 0;
+    }
+    .popover .popover-body .intro>.info>.name{
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 40px;
+    }
+    .popover .popover-body .intro>.info p{
+        margin: 5px 0 0 0;
+    }
+    .popover .popover-body .intro>.info p.introLike{
+        color: #969696;
+    }
+    .popover .popover-body .introMes{
+        display: flex;
+    }
+    .popover .popover-body .introMes ul{
+        width: 50%;
+        display: flex;
+        padding: 0 30px!important;
+        justify-content: space-around;
+    }
+    .popover .popover-body .introMes ul li{
+        font-size: 16px;
+    }
+    .popover .popover-body .introMes ul li span{
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .popover .popover-body .introMes ul li p{
         color: #969696;
     }
 </style>

@@ -58,6 +58,7 @@ ul,ol,dl{
         width: 750px!important;
     }
 }
+
 /*******************************************************/
 /*首页布局*/
 .index .main{
@@ -324,6 +325,11 @@ footer .foot span{
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 40px;
+}
+@media (max-width: 785px) {
+    .note .post{
+        margin: 0 74px;
+    }
 }
 .note .post .article>.title{
     font-size: 34px;
