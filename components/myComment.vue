@@ -175,31 +175,31 @@
                         <div class="more-comment">
                             <a href="javascript:void(0)" class="add-commnet-btn" v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
-                                <span>添加新评论</span>
+                                <span @click="huifu3(index)">添加新评论</span>
                             </a>
                             <transition :duration="500" name="fade">
                                 <div class="clearfix" v-if="showPings[index].showPing">
-                                <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
-                                    <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
-                                        <i class="fa fa-smile-o"></i>
-                                    </a>
-                                <div class="emoji-modal-wrap">
-                                    <transition :duration="1000" name="fade">
-                                        <div v-if="smiles[index].smile" class="emoji-modal arrow-up" @click="selcount(index)">
-                                            <vue-emoji @select="selectEmoji"></vue-emoji>
+                                    <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
+                                        <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
+                                            <i class="fa fa-smile-o"></i>
+                                        </a>
+                                    <div class="emoji-modal-wrap">
+                                        <transition :duration="1000" name="fade">
+                                            <div v-if="smiles[index].smile" class="emoji-modal arrow-up" @click="selcount(index)">
+                                                <vue-emoji @select="selectEmoji"></vue-emoji>
+                                            </div>
+                                        </transition>
+                                        <div class="hint">
+                                            Ctrl + Enter发表
                                         </div>
-                                    </transition>
-                                    <div class="hint">
-                                        Ctrl + Enter发表
+                                        <a href="javascript:void(0)" class="btn btn-send">
+                                            发送
+                                        </a>
+                                        <a href="javascript:void(0)" class="cancel" @click="huifu2(index)">
+                                            取消
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0)" class="btn btn-send">
-                                        发送
-                                    </a>
-                                    <a href="javascript:void(0)" class="cancel" @click="huifu2(index)">
-                                        取消
-                                    </a>
                                 </div>
-                            </div>
                             </transition>
                         </div>
                     </div>
@@ -363,7 +363,6 @@
         showPop2:false,
         changemes:'1',
         colorchange:[],
-        zanchange:false
       }
     },
     created(){
@@ -402,21 +401,22 @@
         }else{
           this.valuem[index].value = '';
         }
-        console.log(mes);
         this.changemes = mes;
       },
       huifu2:function(index){
         this.showPings[index].showPing = false;
       },
+      huifu3:function(index){
+        this.showPings[index].showPing = true;
+      },
       zan:function(index){
-        if(!this.zanchange){
+        if(!this.colorchange[index].colorchange){
           this.colorchange[index].colorchange=true;
           ++this.comments[index].likes_count;
         }else{
           this.colorchange[index].colorchange=false;
           --this.comments[index].likes_count;
         }
-        this.zanchange=!this.zanchange;
       },
       sendData:function(){
 
@@ -424,14 +424,12 @@
     },
     computed:{
       pushMore:function(){
-        console.log(1);
         for(let i in this.comments){
           this.valuem.push({value:''});
           this.smiles.push({smile:false});
           this.showPings.push({showPing:false});
           this.colorchange.push({'colorchange':false});
         }
-        console.log(this.showPings);
       },
     }
   }
