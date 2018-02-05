@@ -54,9 +54,9 @@
                     </div>
                 </div>
                 <!--留言的正文-->
-                <div class="comment-placeholder" style="display: none">
+                <div class="comment-placeholder" style="display: none;">
                     <div class="author">
-                        <div class="avatar"></div>
+                        <div class="avatar" style="vertical-align: middle;"></div>
                         <div class="info">
                             <div class="name"></div>
                             <div class="meta"></div>
@@ -173,33 +173,36 @@
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void(0)" class="add-commnet-btn" v-if="comment.children.length != 0">
+                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu3(index)"
+                               v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
-                                <span @click="huifu3(index)">添加新评论</span>
+                                <span>添加新评论</span>
                             </a>
                             <transition :duration="500" name="fade">
                                 <div class="clearfix" v-if="showPings[index].showPing">
-                                    <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
-                                    <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
-                                        <i class="fa fa-smile-o"></i>
-                                    </a>
-                                    <div class="emoji-modal-wrap">
-                                        <transition :duration="1000" name="fade">
-                                            <div v-if="smiles[index].smile" class="emoji-modal arrow-up"
-                                                 @click="selcount(index)">
-                                                <vue-emoji @select="selectEmoji"></vue-emoji>
+                                    <from>
+                                        <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
+                                        <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
+                                            <i class="fa fa-smile-o"></i>
+                                        </a>
+                                        <div class="emoji-modal-wrap">
+                                            <transition :duration="1000" name="fade">
+                                                <div v-if="smiles[index].smile" class="emoji-modal arrow-up"
+                                                     @click="selcount(index)">
+                                                    <vue-emoji @select="selectEmoji"></vue-emoji>
+                                                </div>
+                                            </transition>
+                                            <div class="hint">
+                                                Ctrl + Enter发表
                                             </div>
-                                        </transition>
-                                        <div class="hint">
-                                            Ctrl + Enter发表
+                                            <a href="javascript:void(0)" class="btn btn-send">
+                                                发送
+                                            </a>
+                                            <a href="javascript:void(0)" class="cancel" @click="huifu2(index)">
+                                                取消
+                                            </a>
                                         </div>
-                                        <a href="javascript:void(0)" class="btn btn-send">
-                                            发送
-                                        </a>
-                                        <a href="javascript:void(0)" class="cancel" @click="huifu2(index)">
-                                            取消
-                                        </a>
-                                    </div>
+                                    </from>
                                 </div>
                             </transition>
                         </div>
@@ -355,7 +358,7 @@
               nick_name: 'biubiu',
               badge: null
             },
-            create_at: '2018-01-29T22:31:58.000+08:00',
+            create_at: '2018-01-29T22:30:59.000+08:00',
             children_count: 0,
             complied_content: '棒棒哒……喜欢！👍💝🌹🌹',
             children: []
@@ -492,7 +495,7 @@
           this.showPings.push({showPing: false})
           this.colorchange.push({'colorchange': false})
         }
-        this.likechange()
+        this.likechange();
       },
     }
   }
