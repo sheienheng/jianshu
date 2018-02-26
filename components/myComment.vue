@@ -23,7 +23,7 @@
                         <div class="hint">
                             Ctrl + Enter发表
                         </div>
-                        <a href="javascript:void(0)" class="btn btn-send" @click="sendData">
+                        <a href="javascript:void(0)" class="btn btn-send">
                             发送
                         </a>
                         <a href="javascript:void(0)" class="cancel" @click="send=false">
@@ -173,15 +173,15 @@
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu3(index)"
+                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu(index,'')"
                                v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
                             </a>
                             <transition :duration="500" name="fade">
                                 <div class="clearfix" v-if="showPings[index].showPing">
-                                    <from>
-                                        <textarea placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
+                                    <div>
+                                        <textarea v-focus placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
                                         <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
                                             <i class="fa fa-smile-o"></i>
                                         </a>
@@ -202,7 +202,7 @@
                                                 取消
                                             </a>
                                         </div>
-                                    </from>
+                                    </div>
                                 </div>
                             </transition>
                         </div>
@@ -369,6 +369,7 @@
         changemes: '1',
         colorchange: [],
         timearr:[],
+        lastEmojisIndex:0,
       }
     },
     created () {
@@ -391,9 +392,15 @@
           this.value = ''
           this.smiles[index].smile = false
         }
-
+        this.smilesfalse();
+      },
+      smilesfalse:function(){
+        for(let i in this.comments){
+          this.smiles[i].smile = false;
+        }
       },
       smilebtn: function (index) {
+        this.smilesfalse();
         this.smiles[index].smile = !this.smiles[index].smile
       },
       huifu: function (index, mes) {
@@ -407,13 +414,13 @@
         } else {
           this.valuem[index].value = ''
         }
-        this.changemes = mes
+        this.smilesfalse();
+        this.changemes = mes;
       },
       huifu2: function (index) {
         this.showPings[index].showPing = false
-      },
-      huifu3: function (index) {
-        this.showPings[index].showPing = true
+        this.valuem[index].value = '';
+        this.smilesfalse();
       },
       zan: function (index) {
         if (!this.colorchange[index].colorchange) {
@@ -483,9 +490,6 @@
           this.timechange(0);
         }
       },
-      sendData: function () {
-
-      }
     },
     computed: {
       pushMore: function () {
@@ -497,7 +501,24 @@
         }
         this.likechange();
       },
-    }
+    },
+    directives: {
+      "focus": {
+        // 钩子函数：bind inserted update componentUpdated unbind
+        // 钩子函数的参数：el，binding，vnode，oldVnode
+        bind:function(el,binding,vnode,oldVnode){
+          el.focus();
+        },
+        update:function(el,binding,vnode,oldVnode){
+          el.focus();
+        },
+        inserted: function (el) {
+          // 聚焦元素
+          el.focus()
+        }
+      }
+
+    },
   }
 </script>
 

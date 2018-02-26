@@ -198,8 +198,6 @@
     name: 'Id',
     data(){
       return{
-        // followShow:true,
-        // followMes:true
         followObj:{
           'follow':true,
           'following':false
