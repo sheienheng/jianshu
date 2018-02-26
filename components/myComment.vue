@@ -26,7 +26,7 @@
                         <a href="javascript:void(0)" class="btn btn-send">
                             发送
                         </a>
-                        <a href="javascript:void(0)" class="cancel" @click="send=false">
+                        <a href="javascript:void(0)" class="cancel" @click="send=false;valueone=''">
                             取消
                         </a>
                     </div>
@@ -181,7 +181,9 @@
                             <transition :duration="500" name="fade">
                                 <div class="clearfix" v-if="showPings[index].showPing">
                                     <div>
-                                        <textarea v-focus placeholder="写下你的评论" v-model="valuem[index].value"></textarea>
+                                        <textarea placeholder="写下你的评论" v-model="valuem[index].value"
+                                                  @blur="focusStatus[index].focusStatus=false"
+                                                  v-focus="focusStatus[index].focusStatus"></textarea>
                                         <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
                                             <i class="fa fa-smile-o"></i>
                                         </a>
@@ -225,6 +227,7 @@
         showEmoji: false,
         valueone: '',
         value: '',
+        focusStatus:[],
         valuem: [],
         showPings: [],
         smiles: [],
@@ -337,7 +340,7 @@
                 complied_content: '<a href="/users/22d2f8f31588" class="maleskine-author" target="_blank" data-user-slug="22d2f8f31588">@长亭外的夏小乔</a> 🙏🙏🙏🍎🍎🌹🌹🌹',
                 user: {
                   id: 8179167,
-                  nickname: '渴死之水'
+                  nickname: '渴死'
                 },
                 parent_id: 20100836,
                 created_at: '2018-01-29T23:19:39.000+08:00',
@@ -366,7 +369,7 @@
         ],
         dddd:'q',
         showPop2: false,
-        changemes: '1',
+        changemes: null,
         colorchange: [],
         timearr:[],
         lastEmojisIndex:0,
@@ -392,6 +395,7 @@
           this.value = ''
           this.smiles[index].smile = false
         }
+        this.focusStatus[index].focusStatus = true
         this.smilesfalse();
       },
       smilesfalse:function(){
@@ -400,7 +404,6 @@
         }
       },
       smilebtn: function (index) {
-        this.smilesfalse();
         this.smiles[index].smile = !this.smiles[index].smile
       },
       huifu: function (index, mes) {
@@ -410,10 +413,11 @@
           this.showPings[index].showPing = true
         }
         if (mes) {
-          this.valuem[index].value = '@' + mes + ':'
+          this.valuem[index].value = '@ ' + mes + ' '
         } else {
           this.valuem[index].value = ''
         }
+        this.focusStatus[index].focusStatus = true;
         this.smilesfalse();
         this.changemes = mes;
       },
@@ -498,6 +502,7 @@
           this.smiles.push({smile: false})
           this.showPings.push({showPing: false})
           this.colorchange.push({'colorchange': false})
+          this.focusStatus.push({focusStatus:false})
         }
         this.likechange();
       },
@@ -506,18 +511,21 @@
       "focus": {
         // 钩子函数：bind inserted update componentUpdated unbind
         // 钩子函数的参数：el，binding，vnode，oldVnode
-        bind:function(el,binding,vnode,oldVnode){
-          el.focus();
+        // bind:function(el,binding,vnode,oldVnode){
+        //   el.focus();
+        // },
+        update:function(el,{value}){
+          if(value){
+            el.focus()
+          }
         },
-        update:function(el,binding,vnode,oldVnode){
-          el.focus();
-        },
-        inserted: function (el) {
+        inserted: function (el,{value}) {
           // 聚焦元素
-          el.focus()
+          if(value){
+            el.focus()
+          }
         }
       }
-
     },
   }
 </script>
@@ -549,6 +557,7 @@
         position: relative;
         margin-left: 48px;
         margin-bottom: 20px;
+        padding: 5px 0;
     }
 
     .note .post .comment-list .avatar {
@@ -698,7 +707,7 @@
 
     .note .post .comment-list .comment {
         padding: 20px 0 30px 0;
-        border: 1px solid #f0f0f0;
+        border-top: 1px solid #f0f0f0;
     }
 
     .note .post .comment-list .comment .comment-content .author {
@@ -743,7 +752,7 @@
     .note .post .comment-list .sub-comment-list {
         border-left: 2px solid #d9d9d9;
         margin-top: 10px;
-        padding: 5px 0 5px 20px;
+        padding: 0 20px;
     }
 
     .note .post .comment-list .sub-comment-list .sub-comment {
