@@ -79,51 +79,6 @@
                                 <nuxt-link to="/u/123">
                                     <img :src="comment.user.avatar" alt="">
                                 </nuxt-link>
-                                <!--<b-popover :show.sync="comment.showPopid" :target="'img-'+index" placement="top" triggers="hover" delay="500">-->
-                                <!--<div class="intro">-->
-                                <!--<div class="introImg">-->
-                                <!--<nuxt-link to="/u/123" class="avatar" :id="'img-'+ index">-->
-                                <!--<img :src="comment.user.avatar" alt="">-->
-                                <!--</nuxt-link>-->
-                                <!--</div>-->
-
-                                <!--<div class="info">-->
-                                <!--<nuxt-link to="/u/123" class="name">-->
-                                <!--{{comment.user.nick_name}}-->
-                                <!--</nuxt-link>-->
-                                <!--<p>爱生活，爱自然爱生活，爱自然,爱生活，爱自然,爱生活，爱自然,爱生活，爱自然,爱生活，爱自然</p>-->
-                                <!--<p class="introLike">爱222222222</p>-->
-                                <!--<p class="introLike">爱3333333</p>-->
-                                <!--<p class="introLike">爱444444444444</p>-->
-
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<hr style="margin: 5px 0 5px 0;">-->
-                                <!--<div class="introMes">-->
-                                <!--<ul>-->
-                                <!--<li>-->
-                                <!--<span>2222</span>-->
-                                <!--<p>文章</p>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                <!--<span>2222</span>-->
-                                <!--<p>文章</p>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                <!--<span>2222</span>-->
-                                <!--<p>文章</p>-->
-                                <!--</li>-->
-                                <!--</ul>-->
-                                <!--&lt;!&ndash;<a class="btn" href="javascript:void(0)" :class="followObj" @click="isFollow" @mouseover="noFollow" @mouseleave="beFollow">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<i class="fa" :class="iconObj" ref="icon3"></i>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span ref="followWord3">关注</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<a class="btn" href="javascript:void(0)" :class="followObj" @click="isFollow" @mouseover="noFollow" @mouseleave="beFollow">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<i class="fa" :class="iconObj" ref="icon3"></i>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span ref="followWord3">关注</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                                <!--</div>-->
-                                <!--</b-popover>-->
                             </div>
                             <div class="info">
                                 <nuxt-link to="/u/123" class="name">
@@ -146,7 +101,7 @@
                                 </a>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="huifu(index,'')">回复</span>
+                                    <span @click="huifu(index,'',comment.id)">回复</span>
                                 </a>
                             </div>
                         </div>
@@ -168,12 +123,12 @@
                                 <span>{{subComment.created_at | formatDate}}</span>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="huifu(index,subComment.user.nickname)">回复</span>
+                                    <span @click="huifu(index,subComment.user.nickname,subComment.id)">回复</span>
                                 </a>
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu(index,'')"
+                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu(index,'','')"
                                v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
@@ -340,7 +295,7 @@
                 complied_content: '<a href="/users/22d2f8f31588" class="maleskine-author" target="_blank" data-user-slug="22d2f8f31588">@长亭外的夏小乔</a> 🙏🙏🙏🍎🍎🌹🌹🌹',
                 user: {
                   id: 8179167,
-                  nickname: '渴死'
+                  nickname: '渴死之水'
                 },
                 parent_id: 20100836,
                 created_at: '2018-01-29T23:19:39.000+08:00',
@@ -406,8 +361,8 @@
       smilebtn: function (index) {
         this.smiles[index].smile = !this.smiles[index].smile
       },
-      huifu: function (index, mes) {
-        if (this.changemes == mes) {
+      huifu: function (index, mes,id) {
+        if (this.changemes == id) {
           this.showPings[index].showPing = !this.showPings[index].showPing
         } else {
           this.showPings[index].showPing = true
@@ -419,7 +374,7 @@
         }
         this.focusStatus[index].focusStatus = true;
         this.smilesfalse();
-        this.changemes = mes;
+        this.changemes = id;
       },
       huifu2: function (index) {
         this.showPings[index].showPing = false
