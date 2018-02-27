@@ -101,7 +101,7 @@
                                 </a>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="huifu(index,'',comment.id)">回复</span>
+                                    <span @click="huifu(index,'',null)">回复</span>
                                 </a>
                             </div>
                         </div>
@@ -324,10 +324,12 @@
         ],
         dddd:'q',
         showPop2: false,
-        changemes: null,
+        changemes: [],
+        changeIndex:-1,
         colorchange: [],
         timearr:[],
         lastEmojisIndex:0,
+        commentFormState:[],
       }
     },
     created () {
@@ -361,9 +363,10 @@
       smilebtn: function (index) {
         this.smiles[index].smile = !this.smiles[index].smile
       },
-      huifu: function (index, mes,id) {
-        if (this.changemes == id) {
+      huifu: function (index,mes,id) {
+        if (this.changemes[index].changemes == id) {
           this.showPings[index].showPing = !this.showPings[index].showPing
+          this.changemes[index].changemes = -1
         } else {
           this.showPings[index].showPing = true
         }
@@ -374,7 +377,7 @@
         }
         this.focusStatus[index].focusStatus = true;
         this.smilesfalse();
-        this.changemes = id;
+        this.changemes[index].changemes = id;
       },
       huifu2: function (index) {
         this.showPings[index].showPing = false
@@ -458,6 +461,7 @@
           this.showPings.push({showPing: false})
           this.colorchange.push({'colorchange': false})
           this.focusStatus.push({focusStatus:false})
+          this.changemes.push({changemes:-1})
         }
         this.likechange();
       },
