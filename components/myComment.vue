@@ -7,7 +7,8 @@
                     <img src="../assets/img/default-avatar.jpg" alt="">
                 </nuxt-link>
                 <textarea placeholder="写下你的评论" @focus="send=true"
-                          v-model="valueone"></textarea>
+                          v-model="valueone" v-focus="valueonefocus"
+                          @blur="valueonefocus=false"></textarea>
                 <transition :duration="300" name="fade">
                     <div v-if="send" class="write-function-block clearfix">
                         <div class="emoji-modal-wrap">
@@ -26,7 +27,8 @@
                         <a href="javascript:void(0)" class="btn btn-send">
                             发送
                         </a>
-                        <a href="javascript:void(0)" class="cancel" @click="send=false;valueone=''">
+                        <a href="javascript:void(0)" class="cancel" @click="
+                        send=false;valueone='';showEmoji = false">
                             取消
                         </a>
                     </div>
@@ -95,13 +97,13 @@
                         <div class="comment-wrap">
                             <p v-html="comment.complied_content"></p>
                             <div class="tool-group">
-                                <a href="javascript:void(0)" :class="colorchange[index]" @click="zan(index)">
-                                    <i class="fa fa-thumbs-o-up"></i>
-                                    <span>{{comment.likes_count}}人点赞</span>
+                                <a href="javascript:void(0)" @click="zan(index)" class="like-bottom zan-animation">
+                                    <i :class="comment.liked?'fa fa-thumbs-up':'fa fa-thumbs-o-up'" ></i>
+                                    <span :class="comment.liked? 'reallike':''">{{comment.likes_count}}人点赞</span>
                                 </a>
                                 <a href="javascript:void(0)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="huifu(index,'',null)">回复</span>
+                                    <span @click="huifu(index,'','top')">回复</span>
                                 </a>
                             </div>
                         </div>
@@ -128,17 +130,17 @@
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu(index,'','')"
+                            <a href="javascript:void(0)" class="add-commnet-btn" @click="huifu(index,'','bottom')"
                                v-if="comment.children.length != 0">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
                             </a>
                             <transition :duration="500" name="fade">
-                                <div class="clearfix" v-if="showPings[index].showPing">
+                                <div class="clearfix" v-if="showPings.includes(index)">
                                     <div>
                                         <textarea placeholder="写下你的评论" v-model="valuem[index].value"
-                                                  @blur="focusStatus[index].focusStatus=false"
-                                                  v-focus="focusStatus[index].focusStatus"></textarea>
+                                                  @blur="focusStatus[index]=false"
+                                                  v-focus="focusStatus[index]"></textarea>
                                         <a href="javascript:void(0)" class="emoji" @click="smilebtn(index)">
                                             <i class="fa fa-smile-o"></i>
                                         </a>
@@ -181,6 +183,7 @@
         send: false,
         showEmoji: false,
         valueone: '',
+        valueonefocus:false,
         value: '',
         focusStatus:[],
         valuem: [],
@@ -252,7 +255,7 @@
           {
             id: 20100836,
             floor: 4,
-            liked: true,
+            liked: false,
             likes_count: 10,
             note_id: 23354357,
             user_id: 7839387,
@@ -305,7 +308,7 @@
           {
             id: 201019966,
             floor: 2,
-            liked: true,
+            liked: false,
             likes_count: 0,
             note_id: 23354357,
             user_id: 8475271,
@@ -346,13 +349,14 @@
       selcount: function (index) {
         if (index < 0) {
           this.valueone = this.value
+          this.valueonefocus=true
           this.value = ''
         } else {
           this.valuem[index].value += this.value
           this.value = ''
           this.smiles[index].smile = false
         }
-        this.focusStatus[index].focusStatus = true
+        this.focusStatus[index] = true
         this.smilesfalse();
       },
       smilesfalse:function(){
@@ -364,33 +368,38 @@
         this.smiles[index].smile = !this.smiles[index].smile
       },
       huifu: function (index,mes,id) {
-        if (this.changemes[index].changemes == id) {
-          this.showPings[index].showPing = !this.showPings[index].showPing
-          this.changemes[index].changemes = -1
+        if (this.changemes[index] == id) {
+          this.showPings.splice(this.showPings.indexOf(index),1)
+          this.changemes[index] = ''
         } else {
-          this.showPings[index].showPing = true
+          if(!this.showPings.includes(index)){
+            this.showPings.push(index);
+          }
+          this.changemes[index] = id;
         }
         if (mes) {
           this.valuem[index].value = '@ ' + mes + ' '
         } else {
           this.valuem[index].value = ''
         }
-        this.focusStatus[index].focusStatus = true;
+        this.focusStatus[index]= true;
         this.smilesfalse();
-        this.changemes[index].changemes = id;
       },
       huifu2: function (index) {
-        this.showPings[index].showPing = false
+        let value = this.showPings.indexOf(index)
+        this.showPings.splice(value,1)
         this.valuem[index].value = '';
+        this.changemes[index]=''
         this.smilesfalse();
       },
       zan: function (index) {
-        if (!this.colorchange[index].colorchange) {
-          this.colorchange[index].colorchange = true
-          ++this.comments[index].likes_count
-        } else {
-          this.colorchange[index].colorchange = false
+        if (this.comments[index].liked) {
           --this.comments[index].likes_count
+          this.comments[index].liked=false
+        //  点赞ajax的借口
+        } else {
+          this.comments[index].liked=true
+          ++this.comments[index].likes_count
         }
       },
       likechange: function () {
@@ -458,10 +467,6 @@
         for (let i in this.comments) {
           this.valuem.push({value: ''})
           this.smiles.push({smile: false})
-          this.showPings.push({showPing: false})
-          this.colorchange.push({'colorchange': false})
-          this.focusStatus.push({focusStatus:false})
-          this.changemes.push({changemes:-1})
         }
         this.likechange();
       },
@@ -698,12 +703,25 @@
         color: #969696 !important;
         margin-right: 10px;
     }
-
+    .note .post .comment-list .comment .tool-group a:first-child:hover i{
+        color: #ea6f5a;
+    }
+    .note .post .comment-list .comment .tool-group a:last-child:hover i{
+        color: #333;
+    }
     .note .post .comment-list .comment .tool-group a i {
         font-size: 18px;
         margin-right: 5px;
     }
-
+    .note .post .comment-list .comment .tool-group a:hover span{
+        color: #333;
+    }
+    .note .post .comment-list .comment .tool-group a i.fa-thumbs-up{
+        color: #ea6f5a;
+    }
+    .note .post .comment-list .comment .tool-group a .reallike{
+        color: #333;
+    }
     .note .post .comment-list .comment .tool-group span {
         font-size: 14px;
     }
@@ -738,7 +756,10 @@
     .note .post .comment-list .sub-tool-group a {
         margin-left: 10px;
     }
-
+    .note .post .comment-list .sub-tool-group a:hover span,
+    .note .post .comment-list .sub-tool-group a:hover i{
+        color: #333;
+    }
     .note .post .comment-list .sub-tool-group a i {
         margin-right: 5px;
     }

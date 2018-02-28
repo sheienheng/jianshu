@@ -1,6 +1,6 @@
 <template>
     <div>
-        <my-header></my-header>
+        <my-header :headcount="headCount"></my-header>
         <div class="index my-container">
             <div class="row">
                 <div class="col-8 main">
@@ -425,7 +425,8 @@
               prevEl: '.swiper-button-prev',
             },
           },
-          deg:360
+          deg:360,
+          headCount:0,
         }
       },
       mounted() {

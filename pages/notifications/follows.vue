@@ -1,6 +1,6 @@
 <template>
     <div>
-        <my-header></my-header>
+        <my-header :headcount="headCount"></my-header>
         <div class="my-container" style="padding:30px 15px">
             <div class="row">
                 <div class="col-4">
@@ -30,6 +30,7 @@
     data(){
       return{
         notificationCount:4,
+        headCount:2,
       }
     }
   }

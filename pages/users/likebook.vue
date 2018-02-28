@@ -24,43 +24,20 @@
                         </div>
                     </div>
                     <ul class="homeContent">
-                        <li :class="actives[0].active" @click="conentChange(0)"
-                            @mouseover="hoverenter(0)" @mouseleave="hoverleave(0)">
-                            <i class="fa fa-book"></i><span>关注的专题/文集/连载</span>
-                            <div :class="actives[0].active" ref="act0"></div>
-                        </li>
-                        <li :class="actives[1].active" @click="conentChange(1)"
-                            @mouseover="hoverenter(1)" @mouseleave="hoverleave(1)">
-                            <i class="fa fa-book"></i><span>喜欢的文章</span>
-                            <div :class="actives[1].active" ref="act1"></div>
+                        <li v-for="(act,index) in actives" @click="conentChange(index)"
+                            :class="act.active">
+                            <i :class="faImg[index]"></i><span>{{changeArtic[index]}}</span>
+                            <div :class="act.active"></div>
                         </li>
                     </ul>
-                    <div v-if="actives[0].active != ''">
-                        111111111111111
-                    </div>
-                    <div v-if="actives[1].active != ''">
-                        222222222222
+                    <div v-for="(com,index2) in components" v-if="actives[index2].active != ''">
+                        <component v-bind:is="com.com"></component>
                     </div>
                 </div>
                 <div class="col-4">
-                    <ul>
-                        <li>
-                            <i class="fa fa-heart"></i>
-                            我关注的专题/文集/连载
-                        </li>
-                        <li>
-                            <i class="fa fa-heart"></i>
-                            我喜欢的文章
-                        </li>
-                    </ul>
-                    <div class="addContent">
-                        <p>我创建的专题</p>
-                        <span>
-                            <i class="fa fa-plus"></i>
-                            创建一个新专题
-                        </span>
-                    </div>
+                    <Col4></Col4>
                 </div>
+
             </div>
 
         </div>
@@ -69,10 +46,21 @@
 
 <script>
   import myHeader from '../../components/myHeader'
+  // import Nuxt from '../../.nuxt/components/nuxt'
+  import One from '../../components/users/one'
+  import Two from '../../components/users/two'
+  import Three from '../../components/users/three'
+  import Four from '../../components/users/four'
+  import Col4 from '../../components/users/col4'
   export default {
-    name: 'lookbook',
+    name: 'likebook',
     components:{
-      myHeader
+      myHeader,
+      One,
+      Two,
+      Three,
+      Four,
+      Col4
     },
     data(){
       return{
@@ -80,11 +68,26 @@
           {active:''},
           {active:'active'},
         ],
-
+        faImg:['fa fa-book','fa fa-book'],
+        changeArtic:['关注的专题/文集/连载','我喜欢的文章'],
+        components:[{com:'One'},{com:'Two'}],
+        route:null,
+        thisRoute:false,
       }
     },
+    mounted(){
+        this.ss();
+    },
     methods:{
+      ss:function(){
+        this.route = this.$route.query.num
+        if(this.route!=null){
+          this.conentChange(this.route)
+        }
+      },
       conentChange:function(index){
+        this.route=null;
+        this.thisRoute=false;
         for(let i in this.actives){
           if(i == index){
             this.actives[i].active='active';
@@ -93,20 +96,6 @@
           }
         }
       },
-      hoverenter:function(index){
-        if(index == 0){
-          this.$refs.act0.classList.add('active2');
-        }else if(index == 1){
-          this.$refs.act1.classList.add('active2');
-        }
-      },
-      hoverleave:function(index){
-        if(index == 0){
-          this.$refs.act0.classList.remove('active2');
-        }else if( index == 1){
-          this.$refs.act1.classList.remove('active2');
-        }
-      }
     }
   }
 </script>
@@ -173,11 +162,11 @@
         background-color: #fff;
         transition: width .3s linear;
     }
-    .homepage .col-8 .homeContent>li>div:hover{
+    .homepage .col-8 .homeContent>li:hover div{
         width: 100%;
         background-color: #333;
     }
-    .homepage .col-8 .homeContent>li>div.active,.homepage .homeContent>li>div.active2{
+    .homepage .col-8 .homeContent>li>div.active{
         width: 100%;
         background-color: #333;
     }
@@ -197,7 +186,7 @@
         padding: 10px;
         font-size: 14px;
     }
-    .homepage .col-4 ul li>i{
+    .homepage .col-4 ul li i{
         font-size: 18px;
         vertical-align: middle;
     }
@@ -215,3 +204,4 @@
         color: #42c02e;
     }
 </style>
+

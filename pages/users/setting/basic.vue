@@ -10,7 +10,6 @@
                     <setting-conent></setting-conent>
                 </div>
             </div>
-
         </div>
     </div>
 

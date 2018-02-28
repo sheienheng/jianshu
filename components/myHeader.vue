@@ -58,19 +58,19 @@
                 </div>
                 <div class="my-container">
                     <ul class="nav-list">
-                        <li class="active">
+                        <li :class="headcount==0?'active':''">
                             <nuxt-link to="/">
                                 <i class="fa fa-compass"></i>
                                 <span>发现</span>
                             </nuxt-link>
                         </li>
-                        <li>
+                        <li :class="headcount==1?'active':''">
                             <nuxt-link to="/">
                                 <i class="fa fa-book"></i>
                                 <span>关注</span>
                             </nuxt-link>
                         </li>
-                        <li class="notify" @mouseover='notifyShow = true' @mouseleave='notifyShow = false'>
+                        <li class="notify" :class="headcount==2?'active':''" @mouseover='notifyShow = true' @mouseleave='notifyShow = false'>
                             <nuxt-link to="/">
                                 <i class="fa fa-bell"></i>
                                 <span>消息</span>
@@ -131,9 +131,19 @@
         return{
           userShow:false,
           notifyShow:false,
-          bgShow:false
+          bgShow:false,
+          headCount:-1,
         }
       },
+      props:['headcount'],
+      mounted(){
+        this.ss()
+      },
+      methods:{
+        ss:function () {
+          console.log(this.headcount)
+        }
+      }
     }
 </script>
 <!--scoped 只在当前组件使用css样式-->
