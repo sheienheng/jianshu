@@ -71,7 +71,7 @@
                             </nuxt-link>
                         </li>
                         <li class="notify" :class="headcount==2?'active':''" @mouseover='notifyShow = true' @mouseleave='notifyShow = false'>
-                            <nuxt-link to="/">
+                            <nuxt-link to="/notifications/comments">
                                 <i class="fa fa-bell"></i>
                                 <span>消息</span>
                             </nuxt-link>
@@ -231,6 +231,7 @@
     nav .user .drop-menu ul li a{
         padding: 10px 20px;
         display: block;
+        /*color: #333;*/
     }
     nav .user .drop-menu ul li a:hover{
         background-color: #f5f5f5;
@@ -275,6 +276,9 @@
     nav .nav-list>li.active{
         color: #ea6f5a;
         background-color: #fff;
+    }
+    nav .nav-list>li.active .drop-menu a{
+        color: #333!important;
     }
     nav .nav-list .notify{
         position: relative;

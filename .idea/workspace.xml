@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/components/myHeader.vue" line="328" />
+    <bookmark url="file://$PROJECT_DIR$/components/myHeader.vue" line="332" />
     <bookmark url="file://$PROJECT_DIR$/components/myComment.vue" line="702" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0d9e474-8775-49c2-af65-c6cc38b445de" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/components/users/col4.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/components/users/four.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/components/users/one.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/components/users/three.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/components/users/two.vue" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/pages/users/new.vue" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/components/myComment.vue" afterPath="$PROJECT_DIR$/components/myComment.vue" />
       <change beforePath="$PROJECT_DIR$/components/myHeader.vue" afterPath="$PROJECT_DIR$/components/myHeader.vue" />
-      <change beforePath="$PROJECT_DIR$/components/settbasic.vue" afterPath="$PROJECT_DIR$/components/settbasic.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/index.vue" afterPath="$PROJECT_DIR$/pages/index.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications/chats.vue" afterPath="$PROJECT_DIR$/pages/notifications/chats.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications/comments.vue" afterPath="$PROJECT_DIR$/pages/notifications/comments.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications/follows.vue" afterPath="$PROJECT_DIR$/pages/notifications/follows.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications/likes.vue" afterPath="$PROJECT_DIR$/pages/notifications/likes.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/notifications/requests.vue" afterPath="$PROJECT_DIR$/pages/notifications/requests.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/users/likebook.vue" afterPath="$PROJECT_DIR$/pages/users/likebook.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/users/myhomepage.vue" afterPath="$PROJECT_DIR$/pages/users/myhomepage.vue" />
-      <change beforePath="$PROJECT_DIR$/pages/users/setting/basic.vue" afterPath="$PROJECT_DIR$/pages/users/setting/basic.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,16 +21,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settbasic.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/settbasic.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="new.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/users/new.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,7 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myhomepage.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="myHeader.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/myHeader.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2888">
+              <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+              <folding>
+                <element signature="e#7049#7119#0" expanded="false" />
+                <element signature="e#7142#7171#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myhomepage.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/users/myhomepage.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1144">
@@ -201,6 +187,8 @@
       <find>setting-title</find>
       <find>banner</find>
       <find>list-container</find>
+      <find>drop-menu</find>
+      <find>active</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -248,7 +236,6 @@
         <option value="$PROJECT_DIR$/components/myComment.vue" />
         <option value="$PROJECT_DIR$/pages/users/setting/basic.vue" />
         <option value="$PROJECT_DIR$/pages/index.vue" />
-        <option value="$PROJECT_DIR$/components/myHeader.vue" />
         <option value="$PROJECT_DIR$/pages/notifications/chats.vue" />
         <option value="$PROJECT_DIR$/pages/notifications/comments.vue" />
         <option value="$PROJECT_DIR$/pages/notifications/follows.vue" />
@@ -263,6 +250,7 @@
         <option value="$PROJECT_DIR$/components/users/two.vue" />
         <option value="$PROJECT_DIR$/components/users/four.vue" />
         <option value="$PROJECT_DIR$/pages/users/likebook.vue" />
+        <option value="$PROJECT_DIR$/components/myHeader.vue" />
       </list>
     </option>
   </component>
@@ -517,7 +505,7 @@
       <workItem from="1519606048656" duration="22971000" />
       <workItem from="1519642077778" duration="4051000" />
       <workItem from="1519693190782" duration="21928000" />
-      <workItem from="1519779931194" duration="39539000" />
+      <workItem from="1519779931194" duration="40253000" />
     </task>
     <task id="LOCAL-00001" summary="登录注册完成">
       <created>1516783076948</created>
@@ -624,11 +612,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519725467452</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="我的主页的完善">
+      <created>1519829418578</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1519829418578</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352985000" />
+    <option name="totallyTimeSpent" value="353699000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -732,7 +727,8 @@
     <MESSAGE value="前端的完善2" />
     <MESSAGE value="回复的完善3" />
     <MESSAGE value="回复的完善4" />
-    <option name="LAST_COMMIT_MESSAGE" value="回复的完善4" />
+    <MESSAGE value="我的主页的完善" />
+    <option name="LAST_COMMIT_MESSAGE" value="我的主页的完善" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1014,19 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/myHeader.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="146" column="5" lean-forward="false" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
-          <folding>
-            <element signature="n#li#3;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#7027#7097#0" expanded="false" />
-            <element signature="e#7120#7149#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/notifications/chats.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -1210,6 +1193,17 @@
             <element signature="n#style#0;n#span#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#2869#2913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/myHeader.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2888">
+          <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+          <folding>
+            <element signature="e#7049#7119#0" expanded="false" />
+            <element signature="e#7142#7171#0" expanded="false" />
           </folding>
         </state>
       </provider>
